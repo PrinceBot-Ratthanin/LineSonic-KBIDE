@@ -251,6 +251,35 @@ Blockly.Blocks['LineSonic_Run_PID_until_frontSensor'] = {
   }
 };
 
+Blockly.Blocks['LineSonic_Run_PID_until_readDigital'] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField("")
+      .appendField(new Blockly.FieldDropdown([["Black", "0"],["White", "1"]]), "line_color");
+    this.appendValueInput("speed")
+      .setCheck("Number")
+      .appendField("(loop)4.3 Run_PD_Speed:");
+    this.appendDummyInput()
+      .appendField("until sensor at ")
+      .appendField(new Blockly.FieldDropdown([["D11", "11"],["D8", "8"],["D7", "7"],["D4", "4"],["D3", "3"],["D2", "2"]]), "digital_port");
+    this.appendDummyInput()
+      .appendField("")
+      .appendField(new Blockly.FieldDropdown([["= 0", "0"],["= 1", "1"]]), "status_port");
+    this.appendValueInput("KP")
+      .setCheck("Number")
+      .appendField("KP:");
+    this.appendValueInput("KD")
+      .setCheck("Number")
+      .appendField("KD:");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(330);
+    this.setTooltip("Rotate ro spin right a robot.");
+  }
+};
+
+
 Blockly.Blocks['set_calibrate_Front_sensor'] = {
   init: function() {
     this.appendValueInput("Round")

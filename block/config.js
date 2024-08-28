@@ -516,6 +516,26 @@ module.exports = {
                             </value>
                         </block>`
               },
+              {
+                  xml:
+                      `<block type="LineSonic_Run_PID_until_readDigital">
+                            <value name="speed">
+                                <shadow type="math_number">
+                                    <field name="NUM">20</field>
+                                </shadow>
+                            </value>
+                            <value name="KP">
+                                <shadow type="math_number">
+                                    <field name="NUM">0.01</field>
+                                </shadow>
+                            </value>
+                            <value name="KD">
+                                <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                </shadow>
+                            </value>
+                        </block>`
+              },
 
                
               

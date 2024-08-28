@@ -126,6 +126,18 @@ Blockly.JavaScript['LineSonic_Run_PID_until_frontSensor'] = function(block) {
   
   return code;
 };
+Blockly.JavaScript['LineSonic_Run_PID_until_readDigital'] = function(block) {
+  var value_line_color = block.getFieldValue('line_color');
+  var value_speed = Blockly.JavaScript.valueToCode(block, 'speed', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_digitalPort = block.getFieldValue('digital_port');
+  var value_status_port = block.getFieldValue('status_port');
+  var value_KP = Blockly.JavaScript.valueToCode(block, 'KP', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_KD = Blockly.JavaScript.valueToCode(block, 'KD', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var code = '';
+  code += 'lineFollow_PID_until_readDigital('+value_line_color+','+ value_speed+','+ value_digitalPort+','+ value_status_port+','+value_KP+','+value_KD+');\n';
+  
+  return code;
+};
 
 Blockly.JavaScript['set_Sensitive_Front_sensor'] = function(block) {
   var value_Round = Blockly.JavaScript.valueToCode(block, 'Sensitive', Blockly.JavaScript.ORDER_ATOMIC) || '0';

@@ -319,6 +319,28 @@ void lineFollow_PID_until_frontSensor(uint8_t line_color,float normally_speed,fl
 
   }while(sum_value_sensor <= sum_value_sensor_traget);
 }
+void lineFollow_PID_until_readDigital(uint8_t line_color,float normally_speed,int digital_port ,int status_port, float RUN_PID_KP, float RUN_PID_KD) {
+  int sum_value_sensor = 0;
+  pinMode(digital_port,INPUT);
+  do{
+
+  int speed_PID = normally_speed;
+  int present_position = readline(line_color);
+  int setpoint = ((_NumofSensor - 1) * 100) / 2;
+  errors = present_position - setpoint;
+
+  if (errors == 0) integral = 0;
+  integral = integral + errors ;
+  derivative = (errors - previous_error) ;
+  output = RUN_PID_KP * errors  + RUN_PID_KD * derivative;
+  int motorL = constrain(speed_PID + output, -100, 100);
+  int motorR = constrain(speed_PID - output, -100, 100);
+  motor(1,motorL);
+  motor(2,motorR);
+  previous_error = errors;
+
+  }while(digitalRead(digital_port) == status_port);
+}
 
 
 bool Read_status_sensor(uint8_t line_color,uint8_t numPin){
